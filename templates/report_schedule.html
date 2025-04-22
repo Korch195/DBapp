@@ -1,0 +1,92 @@
+<h1>Schedule Report</h1>
+<head>
+    <style>
+        /* General table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Table headers */
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: left;
+            padding: 10px;
+        }
+
+        /* Table data */
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        /* Alternate row colors for better readability */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Hover effect for rows */
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        /* Table container with padding */
+        .table-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Heading styles */
+        h1 {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* Add a small margin to the bottom of the table */
+        table {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+{% if reviews %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Schedule ID</th>
+                <th>No Contract</th>
+                <th>Week Day</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Task Description</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+                <tr>
+                    <td>{{ review[0] }}</td>  <!-- ScheduleID -->
+                    <td>{{ review[1] }}</td>  <!-- NoContract -->
+                    <td>{{ review[2] }}</td>  <!-- WeekDay -->
+                    <td>{{ review[3] }}</td>  <!-- StartTime (formatted) -->
+                    <td>{{ review[4] }}</td>  <!-- EndTime (formatted) -->
+                    <td>{{ review[5] }}</td>  <!-- TaskDescription -->
+                    <td>{{ review[6] }}</td>  <!-- Location -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No reviews found.</p>
+{% endif %}

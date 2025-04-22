@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Report</title>
+    <style>
+        /* General table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Table headers */
+        th {
+            background-color: #4CAF50;
+            color: white;
+            text-align: left;
+            padding: 10px;
+        }
+
+        /* Table data */
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        /* Alternate row colors for better readability */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Hover effect for rows */
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        /* Table container with padding */
+        .table-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Heading styles */
+        h1 {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* Add a small margin to the bottom of the table */
+        table {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Review Report</h1>
+
+<div class="table-container">
+    {% if reviews %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Review ID</th>
+                    <th>Reviewer Role</th>
+                    <th>Reviewer ID</th>
+                    <th>Rating</th>
+                    <th>Comments</th>
+                    <th>Review Date</th>
+                    <th>No Contract</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in reviews %}
+                    <tr>
+                        <td>{{ review[0] }}</td>  <!-- ReviewID -->
+                        <td>{{ review[1] }}</td>  <!-- ReviewerRole -->
+                        <td>{{ review[2] }}</td>  <!-- ReviewerID -->
+                        <td>{{ review[3] }}</td>  <!-- Rating -->
+                        <td>{{ review[4] }}</td>  <!-- Comments -->
+                        <td>{{ review[5] }}</td>  <!-- ReviewDate -->
+                        <td>{{ review[6] }}</td>  <!-- NoContract -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No reviews found.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
