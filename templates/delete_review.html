@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Delete Review</title></head>
+<body>
+  <h2>Delete a Review</h2>
+  <form action="/delete_review" method="POST">
+    Review ID:
+    <select name="ReviewID" required>
+      {% for rev in review_ids %}
+        <option value="{{ rev[0] }}">{{ rev[0] }}</option>
+      {% endfor %}
+    </select><br><br>
+
+    <input type="submit" value="Delete Review">
+  </form>
+</body>
+</html>
