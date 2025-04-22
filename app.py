@@ -77,6 +77,62 @@ def delete_review():
     review_ids = cursor.fetchall()
     return render_template('delete_review.html', review_ids=review_ids)
 
+query = """
+SELECT 
+    s.ScheduleID,
+    a.NoContract,
+    s.WeekDay,
+    s.StartTime,
+    s.EndTime,
+    s.TaskDescription,
+    s.Location
+FROM schedule s
+JOIN assistantship a ON s.AssistantshipID = a.NoContract;
+"""
+
+@app.route('/report_schedule')
+def report_schedule():
+    cursor.execute(query)
+    reviews = cursor.fetchall()
+    print(reviews)
+    return render_template('report_schedule.html', reviews=reviews)
+
+query2 = """
+SELECT 
+    r.ReviewID,
+    r.ReviewerRole,
+    r.ReviewerID,
+    r.Rating,
+    r.Comments,
+    r.ReviewDate,
+    a.NoContract
+FROM review r
+JOIN assistantship a ON r.AssistantshipID = a.NoContract;
+"""
+@app.route('/report_reviews')
+def report_reviews():
+    cursor.execute(query2)
+    reviews = cursor.fetchall()
+    return render_template('report_reviews.html', reviews=reviews)
+query3 = """
+SELECT
+    a.NoContract,
+    s.Name AS Student,
+    p.Name AS Professor,
+    a.Duration,
+    a.Salary,
+    a.StartingDate
+FROM
+    assistantship a
+JOIN student s ON a.StudentID = s.PassportSeries
+JOIN professor p ON a.ProfessorID = p.EmployeeID
+"""
+@app.route('/report_contracts')
+def report_contracts():
+    cursor.execute(query3)
+    contracts = cursor.fetchall()
+    return render_template('report_contracts.html', contracts=contracts)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
